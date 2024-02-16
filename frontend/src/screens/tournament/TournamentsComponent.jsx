@@ -56,7 +56,7 @@ const TournamentsComponent = () => {
     const [creationOpen, setCreationOpen] = useState(false);
     const [size, setSize] = useState('RO_16');
     const [seedType, setSeedType] = useState('RANDOM');
-    const [gameType, setGameType] = useState('EASY_CAPS');
+    const [gameType, setGameType] = useState('SINGLES');
     const [tournamentType, setTournamentType] = useState('SINGLE_ELIMINATION');
     const [name, setName] = useState('');
     const hasRole = useHasRole();
@@ -138,8 +138,6 @@ const TournamentsComponent = () => {
                         <Select style={{width: 200, marginBottom: 10}} value={gameType}
                                 onChange={event => setGameType(event.target.value)}>
                             <MenuItem value={"SINGLES"}>Singles</MenuItem>
-                            <MenuItem value={"EASY_CAPS"}>Easy caps</MenuItem>
-                            <MenuItem value={"UNRANKED"}>Unranked</MenuItem>
                             <MenuItem value={"DOUBLES"}>Doubles</MenuItem>
                         </Select>
                         {tournamentType !== "ROUND_ROBIN" && <Select style={{width: 200, marginBottom: 10}} value={size}

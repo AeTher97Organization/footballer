@@ -7,5 +7,4 @@ import lombok.Data;
 public class PlotsDto {
 
     private TimeSeries pointSeries;
-    private TimeSeries rebuttalsSeries;
 }

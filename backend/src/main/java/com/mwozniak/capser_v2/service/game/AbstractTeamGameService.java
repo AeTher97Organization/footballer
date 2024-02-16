@@ -45,47 +45,70 @@ public abstract class AbstractTeamGameService<T extends AbstractTeamGame> extend
 
     @Override
     protected void addAcceptanceAndNotify(AbstractTeamGame game) throws UserNotFoundException, TeamNotFoundException {
+        if (game.isDraw()) {
+            String team1Name = teamService.getTeam(game.getTeam1DatabaseId()).getName();
+            String team2Name = teamService.getTeam(game.getTeam2DatabaseId()).getName();
+                for (UUID id : game.getTeam1().getPlayerList()) {
+                    AcceptanceRequest posterAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
+                            game.getTeam1().getPlayerList().contains(SecurityUtils.getUserId()) ? AcceptanceRequestType.PASSIVE : getAcceptanceRequestType(),
+                            id, game.getId(), game.getGameType());
+                    acceptanceRequestRepository.save(posterAcceptanceRequest);
+                    notificationService.notifyMultiple(posterAcceptanceRequest, team2Name);
 
-        String winnerName = teamService.getTeam(game.getWinnerTeamId()).getName();
-        String loserName = teamService.getTeam(game.getLoserTeamId()).getName();
+                }
+                for (UUID id : game.getTeam2().getPlayerList()) {
+                    User user = userService.getUser(id);
+                    AcceptanceRequest receiverAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
+                            game.getTeam2().getPlayerList().contains(SecurityUtils.getUserId()) ? AcceptanceRequestType.PASSIVE : getAcceptanceRequestType(),
+                            id, game.getId(), game.getGameType(),
+                            game.getTeam1().getPlayerList().contains(SecurityUtils.getUserId()) ? game.getTeam2().getId() : game.getTeam1().getId());
+                    acceptanceRequestRepository.save(receiverAcceptanceRequest);
+                    notificationService.notifyMultiple(receiverAcceptanceRequest, team1Name);
+                    emailService.sendHtmlMessage(user.getEmail(), "New Doubles Game in GCL!", EmailLoader.loadGameAcceptanceEmail().replace("${player}", user.getUsername()).replace("${opponent}", "team " + team1Name));
 
-        if (game.getWinningTeam().getPlayerList().contains(SecurityUtils.getUserId())) {
-            for (UUID id : game.getWinningTeam().getPlayerList()) {
-                AcceptanceRequest posterAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
-                        AcceptanceRequestType.PASSIVE,
-                        id, game.getId(), game.getGameType());
-                acceptanceRequestRepository.save(posterAcceptanceRequest);
-                notificationService.notifyMultiple(posterAcceptanceRequest, loserName);
+                }
 
-            }
-            for (UUID id : game.getLoser().getPlayerList()) {
-                User user = userService.getUser(id);
-                AcceptanceRequest receiverAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
-                        getAcceptanceRequestType(),
-                        id, game.getId(), game.getGameType(), game.getLoserTeamId());
-                acceptanceRequestRepository.save(receiverAcceptanceRequest);
-                notificationService.notifyMultiple(receiverAcceptanceRequest, winnerName);
-                emailService.sendHtmlMessage(user.getEmail(), "New Doubles Game in GCL!", EmailLoader.loadGameAcceptanceEmail().replace("${player}", user.getUsername()).replace("${opponent}", "team " + winnerName));
-
-            }
         } else {
-            for (UUID id : game.getWinningTeam().getPlayerList()) {
-                User user = userService.getUser(id);
-                AcceptanceRequest receiverAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
-                        getAcceptanceRequestType(),
-                        id, game.getId(), game.getGameType(), game.getWinnerTeamId());
-                acceptanceRequestRepository.save(receiverAcceptanceRequest);
-                notificationService.notifyMultiple(receiverAcceptanceRequest, loserName);
-                emailService.sendHtmlMessage(user.getEmail(), "New Doubles Game in GCL!", EmailLoader.loadGameAcceptanceEmail().replace("${player}", user.getUsername()).replace("${opponent}", "team " + loserName));
+            String winnerName = teamService.getTeam(game.getWinnerTeamId()).getName();
+            String loserName = teamService.getTeam(game.getLoserTeamId()).getName();
+            if (game.getWinningTeam().getPlayerList().contains(SecurityUtils.getUserId())) {
+                for (UUID id : game.getWinningTeam().getPlayerList()) {
+                    AcceptanceRequest posterAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
+                            AcceptanceRequestType.PASSIVE,
+                            id, game.getId(), game.getGameType());
+                    acceptanceRequestRepository.save(posterAcceptanceRequest);
+                    notificationService.notifyMultiple(posterAcceptanceRequest, loserName);
+
+                }
+                for (UUID id : game.getLoser().getPlayerList()) {
+                    User user = userService.getUser(id);
+                    AcceptanceRequest receiverAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
+                            getAcceptanceRequestType(),
+                            id, game.getId(), game.getGameType(), game.getLoserTeamId());
+                    acceptanceRequestRepository.save(receiverAcceptanceRequest);
+                    notificationService.notifyMultiple(receiverAcceptanceRequest, winnerName);
+                    emailService.sendHtmlMessage(user.getEmail(), "New Doubles Game in GCL!", EmailLoader.loadGameAcceptanceEmail().replace("${player}", user.getUsername()).replace("${opponent}", "team " + winnerName));
+
+                }
+            } else {
+                for (UUID id : game.getWinningTeam().getPlayerList()) {
+                    User user = userService.getUser(id);
+                    AcceptanceRequest receiverAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
+                            getAcceptanceRequestType(),
+                            id, game.getId(), game.getGameType(), game.getWinnerTeamId());
+                    acceptanceRequestRepository.save(receiverAcceptanceRequest);
+                    notificationService.notifyMultiple(receiverAcceptanceRequest, loserName);
+                    emailService.sendHtmlMessage(user.getEmail(), "New Doubles Game in GCL!", EmailLoader.loadGameAcceptanceEmail().replace("${player}", user.getUsername()).replace("${opponent}", "team " + loserName));
 
 
-            }
-            for (UUID id : game.getLoser().getPlayerList()) {
-                AcceptanceRequest posterAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
-                        AcceptanceRequestType.PASSIVE,
-                        id, game.getId(), game.getGameType());
-                acceptanceRequestRepository.save(posterAcceptanceRequest);
-                notificationService.notifyMultiple(posterAcceptanceRequest, winnerName);
+                }
+                for (UUID id : game.getLoser().getPlayerList()) {
+                    AcceptanceRequest posterAcceptanceRequest = AcceptanceRequest.createAcceptanceRequest(
+                            AcceptanceRequestType.PASSIVE,
+                            id, game.getId(), game.getGameType());
+                    acceptanceRequestRepository.save(posterAcceptanceRequest);
+                    notificationService.notifyMultiple(posterAcceptanceRequest, winnerName);
+                }
             }
         }
 
@@ -94,12 +117,13 @@ public abstract class AbstractTeamGameService<T extends AbstractTeamGame> extend
     @Override
     public void updateEloAndStats(AbstractTeamGame game) throws CapserException {
 
-        TeamWithStats winner = teamService.findTeam(game.getWinnerTeamId());
-        TeamWithStats loser = teamService.findTeam(game.getLoserTeamId());
+        TeamWithStats team1 = teamService.findTeam(game.getTeam1DatabaseId());
+        TeamWithStats team2 = teamService.findTeam(game.getTeam2DatabaseId());
 
-        EloRating.EloResult eloResult = EloRating.calculate(winner.getDoublesStats().getPoints(), loser.getDoublesStats().getPoints(), 30, true);
+        EloRating.EloResult eloResult = EloRating.calculate(team1.getDoublesStats().getPoints(), team2.getDoublesStats().getPoints(), 30,
+                game.isDraw() ? 0 : (game.getWinnerId().equals(team1.getId()) ? -1 : 1));
 
-        for (UUID id : game.getWinningTeam().getPlayerList()) {
+        for (UUID id : team1.getPlayerList()) {
             User user = userService.getUser(id);
             game.calculatePlayerStats(user);
             game.updateUserPoints(user, eloResult.getResult1());
@@ -108,7 +132,7 @@ public abstract class AbstractTeamGameService<T extends AbstractTeamGame> extend
 
         }
 
-        for (UUID id : game.getLoser().getPlayerList()) {
+        for (UUID id : team2.getPlayerList()) {
             User user = userService.getUser(id);
             game.calculatePlayerStats(user);
             game.updateUserPoints(user, eloResult.getResult2());
@@ -117,10 +141,10 @@ public abstract class AbstractTeamGameService<T extends AbstractTeamGame> extend
 
         }
 
-        game.calculateTeamStats(winner.getDoublesStats(),
-                game.getWinnerTeamId().equals(game.getTeam1DatabaseId()) ? game.getTeam1Stats() : game.getTeam2Stats(), true ,eloResult.getResult1());
-        game.calculateTeamStats(loser.getDoublesStats(),
-                game.getLoserTeamId().equals(game.getTeam1DatabaseId()) ? game.getTeam1Stats() : game.getTeam2Stats(), false ,eloResult.getResult2());
+        game.calculateTeamStats(team1.getDoublesStats(),
+                game.getTeam1Stats(), game.getTeam2Stats(), eloResult.getResult1(), game.isDraw());
+        game.calculateTeamStats(team2.getDoublesStats(),
+                game.getTeam2Stats(), game.getTeam1Stats(), eloResult.getResult2(), game.isDraw());
 
     }
 
@@ -139,7 +163,7 @@ public abstract class AbstractTeamGameService<T extends AbstractTeamGame> extend
                 notificationService.notify(Notification.builder()
                         .date(new Date())
                         .notificationType(NotificationType.GAME_ACCEPTED)
-                        .text("Game with team " + teamService.findTeam(request.getAcceptingTeam()).getName()  + " was accepted.")
+                        .text("Game with team " + teamService.findTeam(request.getAcceptingTeam()).getName() + " was accepted.")
                         .seen(false)
                         .userId(acceptanceRequest.getAcceptingUser())
                         .build());
@@ -161,7 +185,7 @@ public abstract class AbstractTeamGameService<T extends AbstractTeamGame> extend
                 notificationService.notify(Notification.builder()
                         .date(new Date())
                         .notificationType(NotificationType.GAME_REJECTED)
-                        .text("Game with team " +  teamService.findTeam(request.getAcceptingTeam()).getName() + " was rejected by on of the users.")
+                        .text("Game with team " + teamService.findTeam(request.getAcceptingTeam()).getName() + " was rejected by on of the users.")
                         .seen(false)
                         .userId(acceptanceRequest.getAcceptingUser())
                         .build());

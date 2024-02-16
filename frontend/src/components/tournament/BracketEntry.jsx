@@ -188,7 +188,7 @@ const BracketEntry = React.memo((
     const classes = mainStyles();
     const hasRole = useHasRole();
 
-    const [plusColor, setPlusColor] = useState('red');
+    const [plusColor, setPlusColor] = useState('#4caf50');
     const [skipColor, setSkipColor] = useState(plusBaseColor);
 
     const history = useHistory();
@@ -249,11 +249,11 @@ const BracketEntry = React.memo((
                         style={{
                             backgroundColor: plusColor,
                             top: -49, left: 137,
-                            height: plusColor === "red" ? 24 : 22,
-                            width: plusColor === "red" ? 24 : 22,
-                            border: plusColor === "red" ? "none" : "1px solid white",
-                            padding: plusColor === "red" ? 2 : 1.25,
-                        }} onMouseEnter={() => setPlusColor("#c70000")} onMouseLeave={() => setPlusColor("red")}>
+                            height: plusColor === "#4caf50" ? 24 : 22,
+                            width: plusColor === "#4caf50" ? 24 : 22,
+                            border: plusColor === "#4caf50" ? "none" : "1px solid white",
+                            padding: plusColor === "#4caf50" ? 2 : 1.25,
+                        }} onMouseEnter={() => setPlusColor("#c70000")} onMouseLeave={() => setPlusColor("#4caf50")}>
                         <AddOutlinedIcon
                             onClick={() => {
                                 if (teams) {
@@ -268,7 +268,7 @@ const BracketEntry = React.memo((
                         className={entryStyle.additionalButtons}
                         style={{
                             backgroundColor: skipColor,
-                            top: plusColor === "red" ? -77 : -76,
+                            top: plusColor === "#4caf50" ? -77 : -76,
                             left: 170,
                             height: skipColor === plusBaseColor ? 24 : 22,
                             width: skipColor === plusBaseColor ? 24 : 22,

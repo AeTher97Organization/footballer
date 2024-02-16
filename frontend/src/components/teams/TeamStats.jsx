@@ -65,48 +65,20 @@ const TeamStats = ({team}) => {
                             <Typography>{stats.gamesLost}</Typography>
                         </div>
                         <div className={classes.header}>
+                            <Typography style={{flex: 1}}>Games Drawn</Typography>
+                            <Typography>{stats.gamesDrawn}</Typography>
+                        </div>
+                        <div className={classes.header}>
                             <Typography style={{flex: 1}}>Win/Loss Ratio</Typography>
                             <Typography>{stats.winLossRatio.toFixed(2)}</Typography>
                         </div>
                         <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Average Rebuttals</Typography>
-                            <Typography>{stats.avgRebuttals.toFixed(2)}</Typography>
-                        </div>
-                        <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Beers Downed</Typography>
-                            <Typography>{stats.beersDowned}</Typography>
-                        </div>
-                        <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Naked Laps</Typography>
-                            <Typography>{stats.nakedLaps}</Typography>
-                        </div>
-                        <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Points Made/Lost</Typography>
-                            <Typography>{stats.pointsMadeLostRatio.toFixed(2)}</Typography>
-                        </div>
-                        <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Sinks Made/Lost</Typography>
-                            <Typography>{stats.sinksMadeLostRatio.toFixed(2)}</Typography>
-                        </div>
-                        <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Total Points Made</Typography>
+                            <Typography style={{flex: 1}}>Goals Made</Typography>
                             <Typography>{stats.totalPointsMade}</Typography>
                         </div>
                         <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Total Points Lost</Typography>
+                            <Typography style={{flex: 1}}>Goals Lost</Typography>
                             <Typography>{stats.totalPointsLost}</Typography>
-                        </div>
-                        <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Total Sinks Made</Typography>
-                            <Typography>{stats.totalSinksMade}</Typography>
-                        </div>
-                        <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Total Sinks Lost</Typography>
-                            <Typography>{stats.totalSinksLost}</Typography>
-                        </div>
-                        <div className={classes.header}>
-                            <Typography style={{flex: 1}}>Total Rebuttals</Typography>
-                            <Typography>{stats.totalRebuttals}</Typography>
                         </div>
 
                     </div>

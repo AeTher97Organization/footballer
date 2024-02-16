@@ -52,7 +52,7 @@ const LatestGames = ({games, small, size}) => {
             padding: small ? 10 : 15
         }}>
             <div>
-                <Typography variant={"h5"}>Latest Games</Typography>
+                <Typography variant={"h5"}>Latest Matches</Typography>
             </div>
             <div style={{padding: small ? 0 : 10}}>
                 <Grid container spacing={2}>

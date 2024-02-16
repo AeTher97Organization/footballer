@@ -40,25 +40,12 @@ const TeamStats = ({game, team}) => {
         style={{flex: 1, minWidth: 200, borderWidth: team === game.winnerId ? 3 : 1}}>
         <Typography style={{maxWidth: '90%', textOverflow: 'ellipsis', overflow: 'hidden'}} noWrap color={"primary"}
                     variant={"h5"}>{teamDetails.teamWithStats.name}</Typography>
-        {nakedLap &&
-        <Typography variant={"caption"} color={"primary"}>Naked lap</Typography>}
         <Typography>Score: {team1 ? game.team1Score : game.team2Score}</Typography>
         <Typography>Points change: {statsList[0].pointsChange.toFixed(2)}</Typography>
-        <Typography>Beers downed: {statsList[0].beersDowned}</Typography>
-        <BoldTyphography>Points by Player</BoldTyphography>
+        <BoldTyphography>Goals by Player</BoldTyphography>
         {statsList.map(stats => {
             const player = teamDetails.players.find(obj => obj.id === stats.playerId)
             return (<Typography key={stats.id}>{player.username}: {stats.score}</Typography>)
-        })}
-        <BoldTyphography>Rebuttals by Player</BoldTyphography>
-        {statsList.map(stats => {
-            const player = teamDetails.players.find(obj => obj.id === stats.playerId)
-            return (<Typography key={stats.id}>{player.username}: {stats.rebuttals}</Typography>)
-        })}
-        <BoldTyphography>Sinks by Player</BoldTyphography>
-        {statsList.map(stats => {
-            const player = teamDetails.players.find(obj => obj.id === stats.playerId)
-            return (<Typography key={stats.id}>{player.username}: {stats.sinks}</Typography>)
         })}
         <div style={{display: 'flex', justifyContent: 'center'}}>
             <div style={{position: 'relative', maxWidth: 0}}>
@@ -105,7 +92,7 @@ const DoublesGame = () => {
                                 />
                             </div>
                             <div className={classes.standardBorder}>
-                                <Typography variant={"h6"} color={"primary"}>Game</Typography>
+                                <Typography variant={"h6"} color={"primary"}>Match</Typography>
                                 <Typography style={{
                                     alignItems: 'center',
                                     display: 'flex'

@@ -53,7 +53,7 @@ public class AggregateGameService {
         if (aggregatedList.size() > 10 * pageNumber) {
             return new PageImpl<>(aggregatedList.subList(10 * pageNumber - 10, 10 * pageNumber - 1), PageRequest.of(0, 10), aggregatedList.size());
         } else {
-            return new PageImpl<>(aggregatedList.subList(10 * pageNumber - 10, aggregatedList.size() - 1), PageRequest.of(0, 10), aggregatedList.size());
+            return new PageImpl<>(aggregatedList.subList(10 * pageNumber - 10, aggregatedList.size() > 0 ? aggregatedList.size() - 1 : 0), PageRequest.of(0, 10), aggregatedList.size());
         }
     }
 

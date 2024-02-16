@@ -1,11 +1,11 @@
-# Capser V2
+# Footballer
 
-Second version of caps games tracking service. With revamped interface and backend. New version allows hosting tournaments and improved statistics.
-This version currently powers [Global Caps League official site](https://globalcapsleague.com).
+Fork of the caps games tracking service mean for tracking FC24 games.
+Original version currently powers [Global Caps League official site](https://globalcapsleague.com).
 
 ## Startup
 
-To lanuch applicaiton in local enviroment use maven to start CapserV2Application.java and node js to start frontend start package.json script.
+To lanuch applicaiton in local enviroment use maven to start FootballerApplication.java and node js to start frontend start package.json script.
 
 ### Environmental variables
 

@@ -14,8 +14,6 @@ const ProfilePlots = ({userId, width}) => {
     const history = useHistory();
     const {data, loaded} = useUserPlots(userId, gameType);
 
-
-
     return (
         <div>
             <ProfilePlotsSelector selected={gameType}
@@ -23,11 +21,9 @@ const ProfilePlots = ({userId, width}) => {
             <Typography variant={"h6"}>Results over time</Typography>
             {gameType === 'DOUBLES' &&
             <Typography>Plots in double stats are aggregated results from all teams</Typography>}
-            {loaded && <>
+            {loaded && data.pointSeries && <>
                 <Typography>Points</Typography>
                 <Plot seriesData={data.pointSeries}/>
-                <Typography>Rebuttals</Typography>
-                <Plot seriesData={data.rebuttalsSeries}/>
             </>}
             {!loaded && <div style={{height: 1000}}/>}
 
@@ -43,13 +39,10 @@ const ProfilePlotsSelector = ({selected, onClick}) => {
 
     return <div style={{display: 'flex', justifyContent: 'center'}}>
         <div className={classes.standardBorder}
-             style={{margin: 0, maxWidth: 500, flex: 1, display: 'flex', justifyContent: 'center', padding: 0}}>
+             style={{margin: 0, maxWidth: 333, flex: 1, display: 'flex', justifyContent: 'center', padding: 0}}>
 
             <SelectorElement selected={selected === "SINGLES"} value={"SINGLES"} onClick={onClick}>
                 <GameIconWithName gameType={"SINGLES"}/>
-            </SelectorElement>
-            <SelectorElement selected={selected === 'EASY_CAPS'} value={"EASY_CAPS"} onClick={onClick}>
-                <GameIconWithName gameType={"EASY_CAPS"}/>
             </SelectorElement>
             <SelectorElement last selected={selected === "DOUBLES"} value={"DOUBLES"} onClick={onClick}>
                 <GameIconWithName gameType={"DOUBLES"}/>
@@ -67,11 +60,11 @@ const SelectorElement = ({
     return <div onClick={() => onClick(value)} style={{
         borderRadius: 5,
         borderRight: last ? null : "1px solid" + theme.palette.divider,
-        flex: 0.33,
+        flex: 0.5,
         padding: 5,
         textAlign: 'center',
         cursor: 'pointer',
-        backgroundColor: selected ? "rgb(75,0,0)" : "transparent"
+        backgroundColor: selected ? "rgb(30,75,0)" : "transparent"
     }}>
         {children}
     </div>

@@ -26,8 +26,6 @@ public interface Game {
 
     UserStats findCorrectStats(User user);
 
-    int getSinksLost(User user);
-
     int getPointsLost(User user);
 
     void updateUserPoints(User user, float pointsChange) throws GameValidationException;
@@ -39,5 +37,7 @@ public interface Game {
     boolean isWinner(User user);
 
     UUID getWinner();
+
+    boolean isDraw();
 
 }

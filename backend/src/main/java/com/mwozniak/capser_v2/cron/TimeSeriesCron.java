@@ -50,10 +50,6 @@ public class TimeSeriesCron {
         if (userStats.getPointsSeries() == null) {
             userStats.setPointsSeries(createEmptyTimeSeries());
         }
-        if (userStats.getRebuttalsSeries() == null) {
-            userStats.setRebuttalsSeries(createEmptyTimeSeries());
-        }
-        userStats.getRebuttalsSeries().logToday(userStats.getAvgRebuttals());
         userStats.getPointsSeries().logToday(userStats.getPoints());
     }
 }

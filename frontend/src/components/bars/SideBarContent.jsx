@@ -59,17 +59,6 @@ const SideBarContent = ({state, go, small}) => {
 
         },
         {
-            tooltip: "Easy Caps",
-            link: "/easy",
-            icon: <EasyIcon/>
-
-        },
-        {
-            tooltip: "Unranked",
-            link: "/unranked",
-            icon: <UnrankedIcon/>
-        },
-        {
             tooltip: "Doubles",
             link: "/doubles",
             icon: <DoublesIcon/>
@@ -85,19 +74,7 @@ const SideBarContent = ({state, go, small}) => {
             link: "/secure/teams",
             icon: <PeopleOutlineIcon/>,
             role: 'USER'
-        },
-        {
-            tooltip: 'Commandments',
-            link: '/10commandments',
-            icon: 10
-
-        },
-        {
-            tooltip: 'Rules',
-            link: '/rules',
-            icon: <GavelIcon/>
-
-        },
+        }
 
     ]
 
@@ -176,7 +153,7 @@ const SideBarContent = ({state, go, small}) => {
 const useStyle = makeStyles(() => ({
     iconButton: {
         '&:hover': {
-            color: 'red'
+            color: '#4caf50'
         },
         fontSize: 20
     },
@@ -186,7 +163,7 @@ const useStyle = makeStyles(() => ({
     },
     redHover: {
         "&:hover": {
-            color: 'red'
+            color: '#4caf50'
         },
         cursor: "pointer"
     }

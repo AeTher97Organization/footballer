@@ -15,7 +15,6 @@ const AddSinglesGameComponent = ({
                                  }) => {
 
     const classes = mainStyles()
-    const [gameMode, setGameMode] = useState("SUDDEN_DEATH");
     const {postGame} = useSoloGamePost(type);
 
 
@@ -25,16 +24,11 @@ const AddSinglesGameComponent = ({
 
 
     const [playerScore, setPlayerScore] = useState(0);
-    const [playerSinks, setPlayerSinks] = useState(0);
     const [opponentScore, setOpponentScore] = useState(0);
 
-    const [opponentSinks, setOpponentSinks] = useState(0);
     const [opponent, setOpponent] = useState(null);
 
 
-    const handleChange = (e) => {
-        setGameMode(e.target.value);
-    }
 
     const handleSave = () => {
 
@@ -46,7 +40,6 @@ const AddSinglesGameComponent = ({
         const player1Stats = {
             playerId: userId,
             score: playerScore,
-            sinks: playerSinks
         };
 
         let player2Stats;
@@ -54,18 +47,15 @@ const AddSinglesGameComponent = ({
             player2Stats = {
                 playerId: opponent.id,
                 score: opponentScore,
-                sinks: opponentSinks
             }
         } else {
             player2Stats = {
                 playerId: undefined,
                 score: opponentScore,
-                sinks: opponentSinks
             }
         }
 
         const request = {
-            gameMode: gameMode,
             player1Stats: player1Stats,
             player2Stats: player2Stats,
             gameEventList: []
@@ -76,7 +66,7 @@ const AddSinglesGameComponent = ({
         }
 
         postGame(request).then(() => {
-            dispatch(showSuccess("Game posted"))
+            dispatch(showSuccess("Match posted"))
             history.push('/')
         }).catch(e => {
             dispatch(showError(e.response.data.error));
@@ -104,15 +94,7 @@ const AddSinglesGameComponent = ({
                 <div style={{padding: 8}} className={showBorder ? classes.standardBorder : null}>
                     {displayGameDataSection && <div
                         className={[classes.column].join(' ')}>
-                        <Typography variant={"h5"}>Game Data</Typography>
-                        <Divider/>
-                        <div className={classes.margin}>
-                            <Select style={{minWidth: 200}} value={gameMode}
-                                    onChange={handleChange}>
-                                <MenuItem value={"SUDDEN_DEATH"}>Sudden Death</MenuItem>
-                                <MenuItem value={"OVERTIME"}>Overtime</MenuItem>
-                            </Select>
-                        </div>
+                        <Typography variant={"h4"}>Match Data</Typography>
                     </div>}
 
                     <div
@@ -124,18 +106,10 @@ const AddSinglesGameComponent = ({
                             <Select style={{minWidth: 200}} value={playerScore} onChange={(e) => {
                                 setPlayerScore(e.target.value)
                             }}>
-                                {getScoreOptions(gameMode === 'SUDDEN_DEATH' ? 11 : 21)}
+                                {getScoreOptions( 21)}
                             </Select>
                         </div>
 
-                        <div className={classes.margin}>
-                            <Typography>Sinks</Typography>
-                            <Select style={{minWidth: 200}} value={playerSinks} onChange={(e) => {
-                                setPlayerSinks(e.target.value)
-                            }}>
-                                {getScoreOptions(21)}
-                            </Select>
-                        </div>
                     </div>
 
                     <div
@@ -151,16 +125,7 @@ const AddSinglesGameComponent = ({
                             <Select value={opponentScore} onChange={(e) => {
                                 setOpponentScore(e.target.value)
                             }} className={classes.width200}>
-                                {getScoreOptions(gameMode === 'SUDDEN_DEATH' ? 11 : 21)}
-                            </Select>
-                        </div>
-                        <div className={classes.margin}>
-                            <Typography>Sinks</Typography>
-                            <Select className={classes.width200} value={opponentSinks}
-                                    onChange={(e) => {
-                                        setOpponentSinks(e.target.value)
-                                    }}>
-                                {getScoreOptions(21)}
+                                {getScoreOptions( 21)}
                             </Select>
                         </div>
                     </div>

@@ -18,18 +18,22 @@ public class EloRating {
     // d determines whether Player A wins
     // or Player B.
     public static EloResult calculate(float rating1, float rating2,
-                                      int k, boolean d) {
+                                      int k, int d) {
 
 
         float player2Probability = probability(rating1, rating2);
         float player1Probability = probability(rating2, rating1);
 
-        if (d) {
-            return new EloResult(k * (1 - player1Probability), k * (0 - player2Probability));
-        } else {
-            return new EloResult(k * (0 - player1Probability), k * (1 - player2Probability));
-        }
+        switch (d) {
+            case -1:
+                return new EloResult(k * (1 - player1Probability), k * (0 - player2Probability));
+            case 1:
+                return new EloResult(k * (0 - player1Probability), k * (1 - player2Probability));
+            case 0:
+                return new EloResult((float)(k * (0.5 - player1Probability)), (float)(k * (0.5 - player2Probability)));
 
+        }
+        throw new IllegalArgumentException("d has to be -1,0 or 1");
     }
 
     @Data

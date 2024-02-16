@@ -43,7 +43,7 @@ const Competitor = ({player, removePlayer, onHighlight, onHighlightEnd, highligh
                 onMouseEnter={() => onHighlight(player.id)} onMouseLeave={onHighlightEnd}>
         {teams ? <PeopleIcon fontSize={"small"}/> : <PersonOutlineIcon fontSize={"small"}/>}
         <BoldTyphography>{teams ? player.name : player.username}</BoldTyphography>
-        {adding && <div style={{flex: 1, display: "flex", justifyContent: "flex-end", color: "red"}}>
+        {adding && <div style={{flex: 1, display: "flex", justifyContent: "flex-end", color: "#4caf50"}}>
             <div style={{cursor: "pointer"}} onClick={() => {
                 removePlayer(player.id);
             }

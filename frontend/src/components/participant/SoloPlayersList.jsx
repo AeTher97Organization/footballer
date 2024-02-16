@@ -41,7 +41,7 @@ const SoloPlayersList = ({type, pointsHidden = false}) => {
                                 {!pointsHidden && <Typography>Points</Typography>}
                             </div>
                             <Typography style={{minWidth: 75, flex: 0.2}}>Last Seen</Typography>
-                            <Typography style={{minWidth: 80, flex: 0.2}}>Last Game</Typography>
+                            <Typography style={{minWidth: 80, flex: 0.2}}>Last Match</Typography>
                         </div>
                         {players.length === 0 &&
                         <Typography style={{textAlign: 'center', marginTop: 15, marginBottom: 15}} variant={"h5"}>

@@ -1,13 +1,11 @@
 package com.mwozniak.capser_v2.achievements;
 
-import com.mwozniak.capser_v2.achievements.general.FirstNakedLapAchievement;
 import com.mwozniak.capser_v2.achievements.general.FirstWinAchievement;
 import com.mwozniak.capser_v2.achievements.general.PlayFirstCapsGameAchievement;
 import com.mwozniak.capser_v2.achievements.general.rebuttals.RebutOnLastChanceAchievement;
 import com.mwozniak.capser_v2.achievements.general.rebuttals.RebuttalsInARowAchievement5;
 import com.mwozniak.capser_v2.enums.Achievement;
 import com.mwozniak.capser_v2.enums.GameEvent;
-import com.mwozniak.capser_v2.enums.GameMode;
 import com.mwozniak.capser_v2.models.database.User;
 import com.mwozniak.capser_v2.models.database.game.AbstractGame;
 import com.mwozniak.capser_v2.models.database.game.GameEventEntity;
@@ -131,35 +129,6 @@ class AchievementsTest {
         assertEquals(Achievement.PLAY_FIRST_GAME, user1.getAchievementEntities().get(0).getAchievement());
     }
 
-    @Test
-    void testFirstNakedLapAchievementFromEasyGame() {
-        EasyCapsGame easyCapsGame = new EasyCapsGame();
-        fillSoloGameData(0, 11, 5, 7, easyCapsGame);
-
-        when(applicationContext.getBeansWithAnnotation(EasyAchievement.class))
-                .thenReturn(getObjectMap(new FirstNakedLapAchievement()));
-        achievementService.initializeProcessors(applicationContext);
-
-        achievementService.processEasyAchievements(user1, easyCapsGame);
-
-        assertEquals(1, user1.getAchievementEntities().size());
-        assertEquals(Achievement.FIRST_NAKED_LAP, user1.getAchievementEntities().get(0).getAchievement());
-    }
-
-    @Test
-    void testFirstNakedLapAchievementFromSinglesGame() {
-        SoloGame singlesGame = new SoloGame();
-        fillSoloGameData(0, 11, 5, 7, singlesGame);
-
-        when(applicationContext.getBeansWithAnnotation(SinglesAchievement.class))
-                .thenReturn(getObjectMap(new FirstNakedLapAchievement()));
-        achievementService.initializeProcessors(applicationContext);
-
-        achievementService.processSinglesAchievements(user1, singlesGame);
-
-        assertEquals(1, user1.getAchievementEntities().size());
-        assertEquals(Achievement.FIRST_NAKED_LAP, user1.getAchievementEntities().get(0).getAchievement());
-    }
 
     @Test
     void testFirstWinAchievementFromEasyGame() {

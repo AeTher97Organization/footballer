@@ -151,7 +151,7 @@ const TeamEdit = ({applyChange, setClose, open, team = {name: '', playerList: []
                                         <Typography style={{flex: 1}}>{player.username}</Typography>
                                         {player.deletable &&
 
-                                        <CloseIcon fontSize={"small"} style={{color: 'red'}}
+                                        <CloseIcon fontSize={"small"} style={{color: '#4caf50'}}
                                                    className={classes.twichButton} onClick={() => {
                                             deleteUser(player.id)
                                         }}/>

@@ -1,10 +1,7 @@
 package com.mwozniak.capser_v2.models.database.game;
 
-import com.mwozniak.capser_v2.enums.GameMode;
-import com.mwozniak.capser_v2.enums.GameType;
 import com.mwozniak.capser_v2.models.database.User;
 import com.mwozniak.capser_v2.models.database.UserStats;
-import com.mwozniak.capser_v2.models.dto.AbstractGameDto;
 import com.mwozniak.capser_v2.models.exception.GameValidationException;
 import com.mwozniak.capser_v2.models.exception.UpdateStatsException;
 import lombok.AllArgsConstructor;
@@ -17,13 +14,9 @@ import java.util.*;
 
 @MappedSuperclass
 @AllArgsConstructor
-public abstract class AbstractGame implements Game{
+public abstract class AbstractGame implements Game {
 
-    protected AbstractGame() {
-        time = new Date();
-        accepted = false;
-        gameEventList = new ArrayList<>();
-    }
+
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -37,9 +30,6 @@ public abstract class AbstractGame implements Game{
     @Getter
     private boolean accepted;
 
-    @Setter
-    @Getter
-    private boolean nakedLap;
 
     @Getter
     @Setter
@@ -50,25 +40,19 @@ public abstract class AbstractGame implements Game{
     private String team2Name;
 
 
+    @Getter
     @Setter
-    @Getter
-    private GameMode gameMode;
-
-    @Getter
-    private final Date time;
+    protected Date time;
 
     @Setter
     @Getter
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected List<GamePlayerStats> gamePlayerStats;
 
-
-    @Setter
-    @Getter
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<GameEventEntity> gameEventList;
-
-
+    protected AbstractGame() {
+        time = new Date();
+        accepted = false;
+    }
 
     public void calculatePlayerStats(User user) throws UpdateStatsException {
         try {
@@ -77,35 +61,19 @@ public abstract class AbstractGame implements Game{
             GamePlayerStats playerStats = findStats(user.getId());
 
             userStats.setGamesPlayed(userStats.getGamesPlayed() + 1);
-            if (isWinner(user)) {
+            if(isDraw()){
+                userStats.setGamesDrawn(userStats.getGamesDrawn() + 1);
+            }else if (isWinner(user)) {
                 userStats.setGamesWon(userStats.getGamesWon() + 1);
             } else {
                 userStats.setGamesLost(userStats.getGamesLost() + 1);
             }
 
-            if (playerStats.getSinks() > 0 || (playerStats.getScore() == 0 && playerStats.getSinks() == 0)) {
-                userStats.setGamesLoggedSinks(userStats.getGamesLoggedSinks() + 1);
-            }
-
-            userStats.setBeersDowned(userStats.getBeersDowned() + playerStats.getBeersDowned());
 
             userStats.setTotalPointsMade(userStats.getTotalPointsMade() + playerStats.getScore());
             userStats.setTotalPointsLost(userStats.getTotalPointsLost() + getPointsLost(user));
 
-            userStats.setTotalSinksMade(userStats.getTotalSinksMade() + playerStats.getSinks());
-            userStats.setTotalSinksLost(userStats.getTotalSinksLost() + getSinksLost(user));
-
-            if (playerStats.isNakedLap()) {
-                userStats.setNakedLaps(userStats.getNakedLaps() + 1);
-            }
-
-
-            userStats.setTotalRebuttals(userStats.getTotalRebuttals() + playerStats.getRebuttals());
-
-
-            userStats.setAvgRebuttals(userStats.getGamesLoggedSinks() == 0 ? userStats.getTotalRebuttals() :(float) userStats.getTotalRebuttals() / userStats.getGamesLoggedSinks());
             userStats.setWinLossRatio(userStats.getGamesLost() == 0 ? userStats.getGamesWon() : (float) userStats.getGamesWon() / userStats.getGamesLost());
-            userStats.setSinksMadeLostRatio(userStats.getTotalSinksLost() == 0 ? userStats.getTotalSinksMade() :(float) userStats.getTotalSinksMade() / userStats.getTotalSinksLost());
             userStats.setPointsMadeLostRatio(userStats.getTotalPointsLost() == 0 ? userStats.getTotalPointsMade() :(float) userStats.getTotalPointsMade() / userStats.getTotalPointsLost());
             user.setLastGame(new Date());
 

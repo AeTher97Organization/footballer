@@ -31,18 +31,13 @@ const PlayerStats = ({playerStats, winner, name}) => {
         className={classes.standardBorder}
         style={{flex: 1, minWidth: 200, borderWidth: winner ? 3 : 1}}>
         <Typography color={"primary"} variant={"h5"}>{name}</Typography>
-        {playerStats.nakedLap &&
-            <Typography variant={"caption"} color={"primary"}>Naked lap</Typography>}
-        <Typography>Score: {playerStats.score}</Typography>
+        <Typography>Goals: {playerStats.score}</Typography>
         <Typography>Points change: {playerStats.pointsChange.toFixed(2)}</Typography>
-        <Typography>Beers downed: {playerStats.beersDowned}</Typography>
-        <Typography>Rebuttals: {playerStats.rebuttals}</Typography>
-        <Typography>Sinks: {playerStats.sinks}</Typography>
         <div style={{display: 'flex', justifyContent: 'center'}}>
             <div style={{position: 'relative', maxWidth: 0}}>
                 {winner && <Typography variant={"h6"} color={"primary"} style={{
                     position: 'absolute',
-                    top: -190,
+                    top: -117,
                     padding: 5,
                     left: -32,
                     backgroundColor: theme.palette.background.default
@@ -89,7 +84,7 @@ const SoloGame = () => {
                                               gameType={game.gameType}/>
                             </div>
                             <div className={classes.standardBorder}>
-                                <Typography variant={"h6"} color={"primary"}>Game</Typography>
+                                <Typography variant={"h6"} color={"primary"}>Match</Typography>
                                 <Typography style={{
                                     alignItems: 'center',
                                     display: 'flex'

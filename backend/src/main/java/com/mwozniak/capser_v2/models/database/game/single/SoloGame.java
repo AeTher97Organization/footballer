@@ -33,18 +33,7 @@ public class SoloGame extends AbstractSoloGame {
 
     }
 
-    @Override
-    public void calculateBeers(GamePlayerStats gamePlayerStats1, GamePlayerStats gamePlayerStats2) {
-        {
-            if (gamePlayerStats1.getScore() > 8) {
-                gamePlayerStats2.setBeersDowned(3);
-            } else if (gamePlayerStats1.getScore() > 4) {
-                gamePlayerStats2.setBeersDowned(2);
-            } else {
-                gamePlayerStats2.setBeersDowned(1);
-            }
-        }
-    }
+
 
     @Override
     public UserStats findCorrectStats(User user) {
