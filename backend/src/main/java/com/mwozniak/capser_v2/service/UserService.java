@@ -139,7 +139,7 @@ public class UserService {
         User user = User.createUserFromDto(createUserDto, passwordEncoder.encode(createUserDto.getPassword()));
         usersRepository.save(user);
         log.info("User creation successful");
-        emailService.sendHtmlMessage(createUserDto.getEmail(), "Welcome to Global Caps League!", EmailLoader.loadRegisteredEmail().replace("${player}", user.getUsername()));
+        emailService.sendHtmlMessage(createUserDto.getEmail(), "Welcome to FC24 Pega!", EmailLoader.loadRegisteredEmail().replace("${player}", user.getUsername()));
         return user;
     }
 

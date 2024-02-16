@@ -76,7 +76,7 @@ const ProfilePicture = ({changePictureOverlayEnabled = false, avatarHash, size =
             {changePictureOverlayEnabled && <Dialog open={profilePictureInfoOpen}>
                 <div className={classes.standardBorder} style={{margin: 0}}>
                     <Typography variant={"h5"}>How to change profile picture?</Typography>
-                    <Typography>Profile pictures used by Global Caps League are global avatars attached to email
+                    <Typography>Profile pictures used by FC24 Pega are global avatars attached to email
                         addresses. To change profile picture visit <Link
                             onClick={() => window.open('https://en.gravatar.com/')}>Gravatar</Link> and create an
                         avatar attached to your email. For more information see <Link

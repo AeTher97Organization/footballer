@@ -83,7 +83,7 @@ const HomeScreen = () => {
 
     return (
         <div style={{height: '100%', overflow: 'scroll'}}>
-            {!small && <PageHeader title={"Global Caps League"} font={"BankGothic"} fontWeight={1000}/>}
+            {!small && <PageHeader title={"FC 24 Pega"} font={"BankGothic"} fontWeight={1000}/>}
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <Grid className={classes.root} container style={{padding: 0, maxWidth: 1250}}>
                     {!gamesLoading && !postsLoading ? <Grid container>
