@@ -25,15 +25,6 @@ public class EasyCapsGame extends AbstractSoloGame {
     }
 
     @Override
-    public void calculateBeers(GamePlayerStats gamePlayerStats1, GamePlayerStats gamePlayerStats2) {
-        if (gamePlayerStats1.getScore() > 0) {
-            gamePlayerStats2.setBeersDowned(1.5f);
-        } else {
-            gamePlayerStats2.setBeersDowned(0);
-        }
-    }
-
-    @Override
     public UserStats findCorrectStats(User user) {
         return user.getUserEasyStats();
     }

@@ -19,9 +19,9 @@ const NotificationList = ({notifications, markSeen}) => {
             case     'ACCEPT_REQUEST' :
                 return 'Accept game'
             case     'GAME_ACCEPTED' :
-                return 'Game accepted'
+                return 'Match accepted'
             case      'GAME_REJECTED':
-                return 'Game rejected'
+                return 'Match rejected'
             case 'ACHIEVEMENT_UNLOCKED':
                 return 'Achievement unlocked!'
         }

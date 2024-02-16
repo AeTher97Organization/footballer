@@ -73,18 +73,12 @@ public class RoundRobinStrategy implements EliminationStrategy {
         List<GamePlayerStats> gamePlayerStats;
         List<GamePlayerStats> opponentPlayerStats;
         if (abstractTeamGame.getTeam1DatabaseId().equals(competitor.getId())) {
-            gamePlayerStats = abstractTeamGame.getTeam1Stats();
-            opponentPlayerStats = abstractTeamGame.getTeam2Stats();
             temp.points += abstractTeamGame.getTeam1Score();
             temp.pointsLost += abstractTeamGame.getTeam2Score();
         } else {
-            gamePlayerStats = abstractTeamGame.getTeam2Stats();
-            opponentPlayerStats = abstractTeamGame.getTeam1Stats();
             temp.points += abstractTeamGame.getTeam2Score();
             temp.pointsLost += abstractTeamGame.getTeam1Score();
         }
-        temp.sinks += abstractTeamGame.getTeamSinks(gamePlayerStats);
-        temp.sinksLost += abstractTeamGame.getTeamSinks(opponentPlayerStats);
     }
 
     private void calculateStatsFromSinglesGame(Competitor competitor, CompetitorTournamentStats temp, BracketEntry entry) {
@@ -102,8 +96,6 @@ public class RoundRobinStrategy implements EliminationStrategy {
         temp.points += gamePlayerStats.getScore();
         temp.pointsLost += opponentPlayerStats.getScore();
 
-        temp.sinks += gamePlayerStats.getSinks();
-        temp.sinksLost += opponentPlayerStats.getSinks();
     }
 
 

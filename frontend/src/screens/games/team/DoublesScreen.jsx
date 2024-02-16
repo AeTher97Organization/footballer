@@ -43,7 +43,7 @@ const DoublesScreen = () => {
             <Tabs value={tab} onChange={handleTabChange} style={{marginTop: 5}} centered>
                 <Tab value={'games'} label={'Games'}/>
                 <Tab value={'players'} label={'Teams'}/>
-                {!hasRole('ADMIN') && <Tab value={'addGame'} label={'Post Game'}/>}
+                {!hasRole('ADMIN') && <Tab value={'addGame'} label={'Post Match'}/>}
             </Tabs>
             <TabPanel value={tab} showValue={'games'}>
                 <TeamGamesList type={'DOUBLES'} render={tab === 'games'}/>

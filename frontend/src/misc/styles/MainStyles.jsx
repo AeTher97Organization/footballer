@@ -76,10 +76,10 @@ const mainStyles = makeStyles(theme => ({
         boxShadow: '0 7px 5px -4px rgba(255,0,0,0.4)',
     },
     link: {
-        color: 'red',
+        color: '#4caf50',
         '&:hover': {
             cursor: 'pointer',
-            textDecoration: "underline red"
+            textDecoration: "underline #4caf50"
         }
     },
     neonTooltip: {

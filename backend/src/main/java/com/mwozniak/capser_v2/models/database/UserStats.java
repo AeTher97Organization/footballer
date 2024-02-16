@@ -30,37 +30,23 @@ public class UserStats {
     private int gamesPlayed;
     private int gamesWon;
     private int gamesLost;
-    private int gamesLoggedSinks;
-
-    private float beersDowned;
-
-    private int totalRebuttals;
+    private int gamesDrawn;
 
     private int totalPointsMade;
     private int totalPointsLost;
 
-    private int totalSinksMade;
-    private int totalSinksLost;
-    private int nakedLaps;
-
-    private float avgRebuttals;
     private float winLossRatio;
-    private float sinksMadeLostRatio;
     private float pointsMadeLostRatio;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private TimeSeries pointsSeries;
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private TimeSeries rebuttalsSeries;
 
     @JsonIgnore
     public PlotsDto getPlots() {
         PlotsDto plotsDto = new PlotsDto();
         plotsDto.setPointSeries(pointsSeries);
-        plotsDto.setRebuttalsSeries(rebuttalsSeries);
         return plotsDto;
     }
 

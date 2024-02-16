@@ -5,7 +5,7 @@ import {PointIcon, RebuttalIcon, SinkIcon} from "./TimelineIcons";
 import {useXtraSmallSize} from "../../../utils/SizeQuery";
 
 
-const leftColor = 'red';
+const leftColor = '#4caf50';
 const rightColor = "orange";
 
 

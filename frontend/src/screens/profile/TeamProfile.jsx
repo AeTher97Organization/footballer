@@ -65,7 +65,7 @@ const TeamScreen = () => {
                         {!loading && <>
                             <TabPanel value={tab} showValue={'stats'}>
                                 <div className={classes.paddedContent}>
-                                    <Typography variant={"h6"}>Game stats</Typography>
+                                    <Typography variant={"h6"}>Match stats</Typography>
                                     <div style={{display: "flex", flexWrap: "wrap"}}>
                                         <div style={{display: "flex", flexDirection: "column", flex: 1}}>
 
@@ -82,7 +82,7 @@ const TeamScreen = () => {
                                         <Divider/>
                                     </div>
                                     {team.players.map(player => {
-                                        return <div key={player.id} style={{color: 'red', display: "flex"}}>
+                                        return <div key={player.id} style={{color: '#4caf50', display: "flex"}}>
                                             <PlayerTooltip playerId={player.id} gameType={'DOUBLES'}>
                                                 <Typography color={"inherit"}
                                                             style={{flex: 0}}>{player.username}</Typography>

@@ -64,10 +64,6 @@ const GameComponent = ({game, vertical = true}) => {
     let team2Score;
     let team1PointsChange;
     let team2PointsChange;
-    let team1Rebuttals = 0;
-    let team2Rebuttals = 0;
-    let team1Sinks = 0;
-    let team2Sinks = 0;
 
     if (game.gameType === 'DOUBLES') {
         team1Name = game.team1Name;
@@ -76,16 +72,6 @@ const GameComponent = ({game, vertical = true}) => {
         team2Score = game.team2Score;
         const player1Stats = findPlayerStats(game, game.team1.playerList[0]);
         const player2Stats = findPlayerStats(game, game.team2.playerList[0]);
-        game.team1.playerList.forEach(player => {
-            team1Sinks += findPlayerStats(game, player).sinks;
-        })
-        game.team2.playerList.forEach(player => {
-            team2Sinks += findPlayerStats(game, player).sinks;
-        })
-        if (team1Sinks !== 0 && team2Sinks !== 0) {
-            team1Rebuttals = team2Sinks - team2Score;
-            team2Rebuttals = team1Sinks - team1Score;
-        }
         team1PointsChange = player1Stats.pointsChange;
         team2PointsChange = player2Stats.pointsChange;
     } else {
@@ -95,12 +81,8 @@ const GameComponent = ({game, vertical = true}) => {
         team2Name = game.team2Name;
         team1Score = player1Stats.score;
         team2Score = player2Stats.score;
-        team1Rebuttals = player1Stats.rebuttals;
-        team2Rebuttals = player2Stats.rebuttals;
         team1PointsChange = player1Stats.pointsChange;
         team2PointsChange = player2Stats.pointsChange;
-        team1Sinks = player1Stats.sinks;
-        team2Sinks = player2Stats.sinks;
     }
 
     return (
@@ -175,38 +157,6 @@ const GameComponent = ({game, vertical = true}) => {
 
                         </div>
                     </div>}
-                    <div className={vertical ? classes.centeredColumn : classes.centeredRowNoFlex}>
-                        <div>
-                            <BoldTyphography>Rebuttals</BoldTyphography>
-                        </div>
-                        <div className={classes.centeredRowNoFlex}>
-                            <Typography className={classes.margin}>{team1Name}</Typography>
-                            <div style={{color: team1Rebuttals >= team2Rebuttals ? 'green' : 'red'}}>
-                                <BoldTyphography color={"inherit"}>{team1Rebuttals}</BoldTyphography>
-                            </div>
-                            <Typography className={classes.margin}>{team2Name}</Typography>
-                            <div style={{color: team2Rebuttals >= team1Rebuttals ? 'green' : 'red'}}>
-                                <BoldTyphography
-                                    color={"inherit"}>{team2Rebuttals}</BoldTyphography>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={vertical ? classes.centeredColumn : classes.centeredRowNoFlex}>
-                        <div>
-                            <BoldTyphography>Sinks</BoldTyphography>
-                        </div>
-                        <div className={classes.centeredRowNoFlex}>
-                            <Typography className={classes.margin}>{team1Name}</Typography>
-                            <div style={{color: team1Sinks >= team2Sinks ? 'green' : 'red'}}>
-                                <BoldTyphography color={"inherit"}>{team1Sinks}</BoldTyphography>
-                            </div>
-                            <Typography className={classes.margin}>{team2Name}</Typography>
-                            <div style={{color: team2Sinks >= team1Sinks ? 'green' : 'red'}}>
-                                <BoldTyphography
-                                    color={"inherit"}>{team2Sinks}</BoldTyphography>
-                            </div>
-                        </div>
-                    </div>
                     {small && <div className={vertical ? classes.centeredColumn : classes.centeredRowNoFlex}>
                         <Link onClick={() => {
                             history.push(`/${getRequestGameTypeString(game.gameType)}/${game.id}`)

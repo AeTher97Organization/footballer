@@ -19,7 +19,7 @@ const FormComponent = ({title, fields, secondaryTitle, onSubmit, buttonText, str
                 </div>
                 {secondaryTitle && <Typography variant={"subtitle2"}>{secondaryTitle}</Typography>}
                 <div className={classes.error}>
-                    <Typography style={{color: "red"}} variant={"caption"}>{error ? error : " "}</Typography>
+                    <Typography style={{color: "#4caf50"}} variant={"caption"}>{error ? error : " "}</Typography>
                 </div>
 
                 {fields && fields.map(field => {

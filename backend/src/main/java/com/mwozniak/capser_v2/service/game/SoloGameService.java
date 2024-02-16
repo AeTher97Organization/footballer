@@ -29,13 +29,12 @@ public abstract class SoloGameService<T extends AbstractSoloGame> extends Abstra
         game.calculatePlayerStats(user1);
         game.calculatePlayerStats(user2);
 
-        boolean d = game.getWinner().equals(user1.getId());
+        int d = game.isDraw() ? 0 : (game.getWinner().equals(game.getPlayer1()) ? -1 : 1);
 
         EloRating.EloResult eloResult = EloRating.calculate(game.findCorrectStats(user1).getPoints(), game.findCorrectStats(user2).getPoints(), 30, d);
 
         game.updateUserPoints(user1, eloResult.getResult1());
         game.updateUserPoints(user2, eloResult.getResult2());
-
 
         userService.saveUser(user1);
         userService.saveUser(user2);

@@ -69,12 +69,12 @@ const BellComponent = ({expanded = true}) => {
 const useStyle = makeStyles(() => ({
     iconButton: {
         '&:hover': {
-            color: 'red'
+            color: '#4caf50'
         }
     },
     redHover: {
         "&:hover": {
-            color: 'red'
+            color: '#4caf50'
         },
         cursor: "pointer"
     }

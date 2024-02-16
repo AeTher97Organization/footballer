@@ -98,7 +98,7 @@ const TeamsScreen = () => {
                                              }}>
                                             <EditIcon fontSize={"small"}/>
                                         </div>
-                                        <div style={{color: 'red'}}
+                                        <div style={{color: '#4caf50'}}
                                              className={classes.twichButton}
                                              onClick={() => {
                                                  clickDelete(team.id, team.name)

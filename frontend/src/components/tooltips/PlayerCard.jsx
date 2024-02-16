@@ -27,10 +27,6 @@ const PlayerCard = (props) => {
                 <Typography variant={"body2"}>{stats.points.toFixed(2)}</Typography>
             </div>
             <div className={classes.header}>
-                <Typography variant={"body2"} style={{flex: 1}}>Average Rebuttals</Typography>
-                <Typography variant={"body2"}>{stats.avgRebuttals.toFixed(2)}</Typography>
-            </div>
-            <div className={classes.header}>
                 <Typography variant={"body2"} style={{flex: 1}}>Games Played</Typography>
                 <Typography variant={"body2"}>{stats.gamesPlayed}</Typography>
             </div>
@@ -43,14 +39,14 @@ const PlayerCard = (props) => {
                 <Typography variant={"body2"}>{stats.gamesLost}</Typography>
             </div>
             <div className={classes.header}>
+                <Typography variant={"body2"} style={{flex: 1}}>Games Drawn</Typography>
+                <Typography variant={"body2"}>{stats.gamesDrawn}</Typography>
+            </div>
+            <div className={classes.header}>
                 <Typography variant={"body2"} style={{flex: 1}}>Win/Loss Ratio</Typography>
                 <Typography variant={"body2"}>{stats.winLossRatio.toFixed(2)}</Typography>
             </div>
 
-            <div className={classes.header}>
-                <Typography variant={"body2"} style={{flex: 1}}>Naked Laps</Typography>
-                <Typography variant={"body2"}>{stats.nakedLaps}</Typography>
-            </div>
         </div>
     );
 };

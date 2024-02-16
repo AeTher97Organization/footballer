@@ -55,6 +55,11 @@ public class DoublesGame extends AbstractTeamGame {
     }
 
     @Override
+    public boolean isDraw() {
+        return getTeam1Score() == getTeam2Score();
+    }
+
+    @Override
     @JsonIgnore
     public UserStats findCorrectStats(User user) {
         return user.getUserDoublesStats();

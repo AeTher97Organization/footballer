@@ -54,7 +54,7 @@ const SoloGameSubpage = ({title, type, showPlayers = true}) => {
         <Tabs value={tab} onChange={handleTabChange} style={{marginTop: 5}} centered>
             <Tab value={'games'} label={'Games'}/>
             {showPlayers && <Tab value={'players'} label={'Players'}/>}
-            {!hasRole('ADMIN') && <Tab value={'addGame'} label={'Post Game'}/>}
+            {!hasRole('ADMIN') && <Tab value={'addGame'} label={'Post Match'}/>}
         </Tabs>
 
         <TabPanel value={tab} showValue={'games'}>

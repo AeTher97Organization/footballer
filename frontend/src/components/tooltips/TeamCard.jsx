@@ -26,10 +26,6 @@ const TeamCard = ({team}) => {
                 <Typography variant={"body2"}>{stats.points.toFixed(2)}</Typography>
             </div>
             <div className={classes.header}>
-                <Typography variant={"body2"} style={{flex: 1}}>Average Rebuttals</Typography>
-                <Typography variant={"body2"}>{stats.avgRebuttals.toFixed(2)}</Typography>
-            </div>
-            <div className={classes.header}>
                 <Typography variant={"body2"} style={{flex: 1}}>Games Played</Typography>
                 <Typography variant={"body2"}>{stats.gamesPlayed}</Typography>
             </div>

@@ -115,7 +115,7 @@ const AcceptanceScreen = props => {
         setQuestion(`Are you sure you want to accept a game against ${opponent}?`)
         setOnYes(() => () => {
             acceptGame(game.id, game.gameType).then(() => {
-                dispatch(showSuccess("Game accepted"));
+                dispatch(showSuccess("Match accepted"));
                 fetch();
             })
         });
@@ -133,6 +133,9 @@ const AcceptanceScreen = props => {
     }
 
     const getWinnerString = (game) => {
+        if(game.team1Score === game.team2Score){
+            return "Draw"
+        }
         const team = game.team1.playerList.includes(userId);
         let winner = false;
         if (game.team1DatabaseId === game.winnerId) {
@@ -155,7 +158,7 @@ const AcceptanceScreen = props => {
         setQuestion(`Are you sure you want to reject a game against ${opponent}?`)
         setOnYes(() => () => {
             rejectGame(game.id, game.gameType).then(() => {
-                dispatch(showSuccess("Game rejected"));
+                dispatch(showSuccess("Match rejected"));
                 fetch();
             })
         });
@@ -172,15 +175,12 @@ const AcceptanceScreen = props => {
         return (
             <div className={styles.row} key={request.id} style={{justifyContent: 'space-between'}}>
                 <div style={{display: "flex", flexDirection: "column", alignItems: small ? 'center' : 'flex-start'}}>
-                    <BoldTyphography>{game.winner === userId ? 'Victory' : 'Loss'} against {opponent} {playerStats.score} : {opponentStats.score}</BoldTyphography>
+                    <BoldTyphography>{game.draw ? "Draw" : (game.winner === userId ? 'Victory' : 'Loss')} against {opponent} {playerStats.score} : {opponentStats.score}</BoldTyphography>
 
                     <GameIconWithName gameType={game.gameType}/>
                     <Typography variant={"caption"}>{getGameModeString(game.gameMode)}</Typography>
                     <Typography variant={"caption"}>{new Date(game.time).toDateString()}</Typography>
 
-                    <Typography
-                        variant={"caption"}>Rebuttals {playerStats.rebuttals} : {opponentStats.rebuttals}</Typography>
-                    <Typography variant={"caption"}>Sinks {playerStats.sinks} : {opponentStats.sinks}</Typography>
                 </div>
 
                 {request.acceptanceRequestType !== 'PASSIVE' ?

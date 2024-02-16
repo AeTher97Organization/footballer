@@ -85,7 +85,7 @@ const ProfileScreen = () => {
                         <div style={{display: "flex", alignItems: 'center', flexDirection: 'column', marginTop: 10}}>
                             <Typography style={{fontWeight: 'bold'}}>Last seen</Typography>
                             <Typography>{data.lastSeen ? new Date(data.lastSeen).toDateString() : 'Never seen'}</Typography>
-                            <Typography style={{fontWeight: 'bold'}}>Last game</Typography>
+                            <Typography style={{fontWeight: 'bold'}}>Last match</Typography>
                             <Typography>{data.lastGame ? new Date(data.lastGame).toDateString() : 'Never played'}</Typography>
                         </div>}
                     {(!playerId || playerId === userId) &&
@@ -98,36 +98,32 @@ const ProfileScreen = () => {
                     <Tabs value={tab} onChange={handleTabChange} variant={"scrollable"}>
                         <Tab label={"Overview"} value={"stats"}/>
                         <Tab label={"Charts"} value={"charts"}/>
-                        <Tab label={"Game history"} value={"history"}/>
+                        <Tab label={"Match history"} value={"history"}/>
                         <Tab label={"Achievements"} value={"achievements"}/>
                     </Tabs>
 
                     {!loading && loaded && <>
                         <TabPanel value={tab} showValue={'stats'}>
                             <div className={classes.paddedContent}>
-                                <Typography variant={"h6"}>Game stats</Typography>
+                                <Typography variant={"h6"}>Match stats</Typography>
                                 <div style={{display: "flex", flexWrap: "wrap"}}>
                                     <div style={{display: "flex", flexDirection: "column", flex: 1}}>
                                         <div className={classes.standardBorder}
                                              style={{flex: 1}}>{displayStats("SINGLES", data.userSinglesStats)}</div>
-                                        <div className={classes.standardBorder}
-                                             style={{flex: 1}}>{displayStats("DOUBLES", data.userDoublesStats)}</div>
                                     </div>
                                     <div style={{display: "flex", flexDirection: "column", flex: 1}}>
                                         <div className={classes.standardBorder}
-                                             style={{flex: 1}}>{displayStats("EASY_CAPS", data.userEasyStats)}</div>
-                                        <div className={classes.standardBorder}
-                                             style={{flex: 1}}>{displayStats("UNRANKED", data.userUnrankedStats, false)}</div>
+                                             style={{flex: 1}}>{displayStats("DOUBLES", data.userDoublesStats)}</div>
                                     </div>
                                 </div>
                             </div>
                             <Divider/>
                             <div>
-                                <div className={classes.paddedContent}>
+                            <div className={classes.paddedContent}>
                                     <Typography variant={"h6"}>Teams</Typography>
                                 </div>
                                 {data.teams.filter(team => team.active).map(team => {
-                                    return <div key={team.id} style={{color: 'red'}}>
+                                    return <div key={team.id} style={{color: '#4caf50'}}>
                                         <div className={classes.paddedContent} style={{display: "flex"}}>
                                             <TeamTooltip teamId={team.id}>
                                                 <Typography color={"inherit"} style={{flex: 0}} onClick={

@@ -1,12 +1,12 @@
 import Fade from "@material-ui/core/Fade";
-import red from "@material-ui/core/colors/red";
+import green from "@material-ui/core/colors/green";
 import {grey} from "@material-ui/core/colors";
 import {createTheme} from "@material-ui/core";
 
 
 export const baseDarkTheme = createTheme({
     palette: {
-        primary: red,
+        primary: green,
         secondary: grey,
         text: {
             primary: 'rgba(255,255,255,0.87)',
@@ -334,7 +334,7 @@ const getProps = (baseTheme) => {
 export const darkTheme = createTheme({
     palette: {
         type: "dark",
-        primary: red,
+        primary: green,
         secondary: grey,
         background: {
             default: '#0a1018',
