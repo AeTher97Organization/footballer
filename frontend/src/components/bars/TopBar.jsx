@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar, IconButton, Toolbar} from "@material-ui/core";
+import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -13,7 +13,7 @@ const MobileTopBar = ({open, setOpen}) => {
                             onClick={() => setOpen(!open)}>
                     <MenuIcon/>
                 </IconButton>
-                <img alt={'Gcl wordmark logo'} style={{height: 32, marginTop: 2}} src={'/gcl_logo_wordmark.svg'}/>
+                <img alt={'Gcl wordmark logo'} style={{height: 32, marginTop: 2}} src={'/logo192.png'}/>
             </Toolbar>
         </AppBar>
     );

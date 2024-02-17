@@ -86,10 +86,16 @@ const DoublesGame = () => {
                                     history.push(`/teams/${game.team1DatabaseId}`)
                                 }}/>
                                 <Typography variant={"h3"}>VS</Typography>
-                                <TeamSplash teamDetails={game.team2Details} onClick={()=>{
+                                <TeamSplash teamDetails={game.team2Details} onClick={() => {
                                     history.push(`/teams/${game.team1DatabaseId}`)
                                 }}/>
                                 />
+                            </div>
+                            <div className={classes.header}
+                                 style={{justifyContent: 'center'}}>
+                                <Typography variant={"h1"}>{game.team1Score}</Typography>
+                                <Typography variant={"h1"} style={{marginRight: 20, marginLeft: 20}}>:</Typography>
+                                <Typography variant={"h1"}>{game.team2Score}</Typography>
                             </div>
                             <div className={classes.standardBorder}>
                                 <Typography variant={"h6"} color={"primary"}>Match</Typography>

@@ -83,6 +83,12 @@ const SoloGame = () => {
                                               winner={game.winner === game.player2} playerId={game.player2}
                                               gameType={game.gameType}/>
                             </div>
+                            <div className={classes.header}
+                                 style={{justifyContent: 'center'}}>
+                                <Typography variant={"h1"}>{player1Stats.score}</Typography>
+                                <Typography variant={"h1"} style={{marginRight: 20, marginLeft:20}}>:</Typography>
+                                <Typography variant={"h1"}>{player2Stats.score}</Typography>
+                            </div>
                             <div className={classes.standardBorder}>
                                 <Typography variant={"h6"} color={"primary"}>Match</Typography>
                                 <Typography style={{

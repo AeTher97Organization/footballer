@@ -39,7 +39,7 @@ const DoublesScreen = () => {
     }
     return (
         <div>
-            <PageHeader title={"Doubles"} icon={<DoublesIcon/>}/>
+            <PageHeader title={"Doubles"} icon={<DoublesIcon fontSize={'large'}/>}/>
             <Tabs value={tab} onChange={handleTabChange} style={{marginTop: 5}} centered>
                 <Tab value={'games'} label={'Games'}/>
                 <Tab value={'players'} label={'Teams'}/>

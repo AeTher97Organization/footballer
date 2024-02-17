@@ -59,7 +59,7 @@ const SignInScreen = props => {
                 <CenteredColumn>
                     <img src={small ? '/logo512.png' : "/logo192.png"} style={{height: 192, width: 192}}/>
                     <FormComponent
-                        title={'Capser Log In'}
+                        title={'Log in to Pega FC24'}
                         fields={fields}
                         onSubmit={handleLogin}
                         buttonText={"Log In"}

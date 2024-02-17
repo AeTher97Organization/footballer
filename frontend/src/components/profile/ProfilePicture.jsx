@@ -42,6 +42,7 @@ const ProfilePicture = ({changePictureOverlayEnabled = false, avatarHash, size =
         baseSize = overrideSize;
     }
 
+    console.log()
     return (
         <div style={{
             clipPath: `url(#${clipName}2)`,
@@ -53,7 +54,9 @@ const ProfilePicture = ({changePictureOverlayEnabled = false, avatarHash, size =
             alignItems: 'center',
         }}>
             <img style={{width: baseSize, height: baseSize}}
-                 src={`https://www.gravatar.com/avatar/${avatarHash}?s=${small ? baseSize * 2 : baseSize}&d=${encodeURIComponent(small ? 'https://globalcapsleague.com/defaultProfile2x.png' : 'https://globalcapsleague.com/defaultProfile.png')}`}/>
+                 src={`https://www.gravatar.com/avatar/${avatarHash}?s=${small ? baseSize * 2 : baseSize}&d=${
+                     encodeURIComponent(small ? `${window.location.href.replace(window.location.pathname,"")}/defaultProfile2x.png`
+                         : `${window.location.href.replace(window.location.pathname,"")}/defaultProfile.png`)}`}/>
             {changePictureOverlayEnabled &&
             <EditIcon fontSize={"large"} style={{
                 position: 'relative', top: -95, left: 0, display: pictureOverlay || small ? 'block' : 'none'

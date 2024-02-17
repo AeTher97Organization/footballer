@@ -120,7 +120,7 @@ const TeamsScreen = () => {
                                     alignItems: 'center',
                                     height: 480
                                 }}>
-                                    <img src={"/dd.svg"} style={{maxWidth: 250}}/>
+                                    <img src={"/logo512.png"} style={{maxWidth: 250}}/>
                                     {teams.length > 0 ?
                                         <Typography variant={"h5"}>Select a team to see stats</Typography> :
                                         <Typography variant={"h5"}>No teams, create one</Typography>}
