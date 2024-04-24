@@ -55,8 +55,7 @@ const ProfilePicture = ({changePictureOverlayEnabled = false, avatarHash, size =
         }}>
             <img style={{width: baseSize, height: baseSize}}
                  src={`https://www.gravatar.com/avatar/${avatarHash}?s=${small ? baseSize * 2 : baseSize}&d=${
-                     encodeURIComponent(small ? `${window.location.href.replace(window.location.pathname,"")}/defaultProfile2x.png`
-                         : `${window.location.href.replace(window.location.pathname,"")}/defaultProfile.png`)}`}/>
+                     encodeURIComponent("https://lh3.googleusercontent.com/u/1/drive-viewer/AKGpihb2iR4AqMZ2JUrzW85ikH-rdLH9HG548Rk_65WM1QANdJIz-cHQV1NtUk5S4PqAkfuxtt-3W9PzvL6F5Dthz_atJTIUIA=w1920-h945")}` }/>
             {changePictureOverlayEnabled &&
             <EditIcon fontSize={"large"} style={{
                 position: 'relative', top: -95, left: 0, display: pictureOverlay || small ? 'block' : 'none'

@@ -35,30 +35,30 @@ public class EmailService {
 
 
     public void sendHtmlMessage(String to, String subject, String content) {
-        log.info("Sending html email to " + to);
-        try {
-            executorService.submit(new SendMessageTask(javaMailSender, to, subject, content, this));
-        } catch (Exception e) {
-            //don't propagate this exception to callers to avoid weird errors, save email for later and handle it here
-            log.error("Failed to send email " + e.getMessage());
-            saveFailedEmail(FailedEmail.builder()
-                    .recipient(to)
-                    .subject(subject)
-                    .content(content)
-                    .date(new Date())
-                    .build());
-        }
+//        log.info("Sending html email to " + to);
+//        try {
+//            executorService.submit(new SendMessageTask(javaMailSender, to, subject, content, this));
+//        } catch (Exception e) {
+//            //don't propagate this exception to callers to avoid weird errors, save email for later and handle it here
+//            log.error("Failed to send email " + e.getMessage());
+//            saveFailedEmail(FailedEmail.builder()
+//                    .recipient(to)
+//                    .subject(subject)
+//                    .content(content)
+//                    .date(new Date())
+//                    .build());
+//        }
     }
 
     @Scheduled(cron = "0 0 21 * * *")
     public void resendEmails() {
-        log.info("Resending failed emails");
-        List<FailedEmail> failedEmailList = failedEmailRepository.findAll();
-        log.info(failedEmailList.size() + " failed emails found");
-        failedEmailList.forEach(failedEmail -> {
-            sendHtmlMessage(failedEmail.getRecipient(), failedEmail.getSubject(), failedEmail.getContent());
-            failedEmailRepository.delete(failedEmail);
-        });
+//        log.info("Resending failed emails");
+//        List<FailedEmail> failedEmailList = failedEmailRepository.findAll();
+//        log.info(failedEmailList.size() + " failed emails found");
+//        failedEmailList.forEach(failedEmail -> {
+//            sendHtmlMessage(failedEmail.getRecipient(), failedEmail.getSubject(), failedEmail.getContent());
+//            failedEmailRepository.delete(failedEmail);
+//        });
     }
 
     public void saveFailedEmail(FailedEmail failedEmail) {

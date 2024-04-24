@@ -30,10 +30,10 @@ const LoadingComponent = ({size = "medium", wrapper = true, noPadding = false, s
                 width: '100%',
                 height: fullHeight ? '100%' : null
             }}>
-                <img src={"/loading.svg"} className={selected} style={{margin: 10}}/>
+                <img src={"loading.svg"} className={selected} style={{margin: 10}}/>
                 {showText && <Typography variant={"h6"} style={{fontWeight: 'bold'}}>Loading...</Typography>}
 
-            </div> : <img src={"/loading.svg"} className={selected} style={{margin: 10}}/>}
+            </div> : <img src={"loading.svg"} className={selected} style={{margin: 10}}/>}
         </div>
     );
 };

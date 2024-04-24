@@ -13,7 +13,7 @@ const MobileTopBar = ({open, setOpen}) => {
                             onClick={() => setOpen(!open)}>
                     <MenuIcon/>
                 </IconButton>
-                <img alt={'Gcl wordmark logo'} style={{height: 32, marginTop: 2}} src={'/logo192.png'}/>
+                <img alt={'Gcl wordmark logo'} style={{height: 32, marginTop: 2}} src={'logo192.png'}/>
             </Toolbar>
         </AppBar>
     );

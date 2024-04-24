@@ -1,17 +1,12 @@
-FROM maven:3.6-jdk-8 as maven
-WORKDIR /app
-COPY ./pom.xml ./pom.xml
-RUN mvn dependency:go-offline -B
-COPY ./src ./src
-RUN mvn package && cp target/footballer*.jar app.jar
+FROM eclipse-temurin:8-jdk
 
-FROM openjdk:8-jre-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-LABEL maintainer="michael93509@gmail.com"
 WORKDIR /app
-COPY --from=maven /app/app.jar ./app.jar
+COPY  target/footballer-2.0.0.jar ./app.jar
+COPY  docker-entrypoint.sh /
+RUN chmod 755 /docker-entrypoint.sh
+
+LABEL maintainer="michael93509@gmail.com"
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+ENTRYPOINT ["/docker-entrypoint.sh"]

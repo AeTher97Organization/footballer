@@ -10,25 +10,25 @@ const Achievement = ({achievement}) => {
         switch (achievement.achievement) {
             case "PLACE_IN_EASY":
             case "PLACE_IN_SINGLES":
-                return "/achievements/Placement.png"
+                return "achievements/Placement.png"
             case "PLAY_FIRST_GAME":
-                return "/achievements/First_game.png"
+                return "achievements/First_game.png"
             case "FIRST_WIN":
-                return "/achievements/Win_first_game.png"
+                return "achievements/Win_first_game.png"
             case "FIRST_NAKED_LAP":
-                return "/achievements/Naked_lap.png"
+                return "achievements/Naked_lap.png"
             case "REBUTTALS_IN_A_ROW_5":
-                return "/achievements/Rebuttals_5.png"
+                return "achievements/Rebuttals_5.png"
             case "REBUTTALS_IN_A_ROW_7":
-                return "/achievements/Rebuttals_7.png"
+                return "achievements/Rebuttals_7.png"
             case "REBUTTALS_IN_A_ROW_10":
-                return "/achievements/Rebuttals_10.png"
+                return "achievements/Rebuttals_10.png"
             case "REBUTTALS_IN_A_ROW_12":
-                return "/achievements/Rebuttals_12.png"
+                return "achievements/Rebuttals_12.png"
             case "REBUTTALS_IN_A_ROW_15":
-                return "/achievements/Rebuttals_15.png"
+                return "achievements/Rebuttals_15.png"
             case "REBUT_ON_LAST_CHANCE":
-                return "/achievements/Rebuttal_on_11.png"
+                return "achievements/Rebuttal_on_11.png"
             default:
                 return ""
         }

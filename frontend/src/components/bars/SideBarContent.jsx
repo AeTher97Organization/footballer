@@ -85,7 +85,7 @@ const SideBarContent = ({state, go, small}) => {
             }}
                             style={{display: "flex", flexDirection: "row", justifyContent: "center"}}
             >
-                <img src={"/logo192.png"} style={{maxWidth: 38, padding: 3, cursor: "pointer", minHeight: 38}}
+                <img src={"logo192.png"} style={{maxWidth: 38, padding: 3, cursor: "pointer", minHeight: 38}}
                      alt={'Logo'}/>
             </div>}
             {hasRole('USER') && <div>

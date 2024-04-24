@@ -78,7 +78,7 @@ const RegisterScreen = () => {
     return (
         <div className={classes.root}>
             <div className={classes.loginContainer}>
-                <img style={{maxWidth: 192}} src={"/logo192.png"}/>
+                <img style={{maxWidth: 192}} src={"logo192.png"}/>
                 <CenteredColumn>
                     <FormComponent
                         title={'Create account'}

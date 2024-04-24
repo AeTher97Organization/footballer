@@ -179,7 +179,7 @@ const AcceptanceScreen = props => {
 
                     <GameIconWithName gameType={game.gameType}/>
                     <Typography variant={"caption"}>{getGameModeString(game.gameMode)}</Typography>
-                    <Typography variant={"caption"}>{new Date(game.time).toDateString()}</Typography>
+                    <Typography variant={"caption"}>{new Date(game.time).toTimeString()}</Typography>
 
                 </div>
 

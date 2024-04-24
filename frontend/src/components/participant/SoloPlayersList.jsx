@@ -45,7 +45,7 @@ const SoloPlayersList = ({type, pointsHidden = false}) => {
                         </div>
                         {players.length === 0 &&
                         <Typography style={{textAlign: 'center', marginTop: 15, marginBottom: 15}} variant={"h5"}>
-                            No one has played 5 games</Typography>}
+                            No one has played a game</Typography>}
                         {players.map(player => {
                             index++;
                             const stats = player[getStatsString(type)];

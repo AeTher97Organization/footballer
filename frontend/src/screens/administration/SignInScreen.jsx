@@ -57,7 +57,7 @@ const SignInScreen = props => {
         <div className={classes.root}>
             <div className={classes.loginContainer}>
                 <CenteredColumn>
-                    <img src={small ? '/logo512.png' : "/logo192.png"} style={{height: 192, width: 192}}/>
+                    <img src={small ? 'logo512.png' : "logo192.png"} style={{height: 192, width: 192}}/>
                     <FormComponent
                         title={'Log in to Pega FC24'}
                         fields={fields}
@@ -66,20 +66,14 @@ const SignInScreen = props => {
                         stretchButton={true}
                         error={error}
                     />
-                    <div className={classes.footer}>
-                        <Typography variant={"caption"}>Haven't played pro caps yet? </Typography>
+                    <div className={classes.footer} style={{maxWidth: 230, textAlign: "center"}}>
+                        <Typography variant={"caption"}>Would you like to take part in FC24 Pega League? </Typography>
                         <Typography variant={"caption"} color={"primary"} className={classes.link} onClick={() => {
                             history.push('/register')
                         }}>Sign up!</Typography>
                     </div>
                     <div className={classes.footer}>
-                        <Typography variant={"caption"}>Forgot password? </Typography>
-                        <Typography variant={"caption"} color={"primary"} className={classes.link} onClick={() => {
-                            history.push('/reset')
-                        }}>Reset</Typography>
-                    </div>
-                    <div className={classes.footer}>
-                        <Typography variant={"caption"}>Made with ❤ by Mike 2021</Typography>
+                        <Typography variant={"caption"}>Made with ❤ by Mike 2024</Typography>
                     </div>
                 </CenteredColumn>
             </div>

@@ -7,7 +7,7 @@ const LogoComponent = ({size = "medium"}) => {
 
     return (
         <div className={classes.centeredRow}>
-            <img src={"/logo192.png"} style={{maxWidth: 75}}/>
+            <img src={"logo192.png"} style={{maxWidth: 75}}/>
         </div>
     );
 };
